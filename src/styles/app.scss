@@ -209,9 +209,13 @@ select:focus-visible {
   transition: background var(--duration-fast) ease, transform var(--duration-fast) ease;
 }
 
-.game-cell:hover:not(.game-cell--revealed) {
+.game-cell:hover:not(.game-cell--revealed):not(:disabled) {
   background: var(--color-field-hover);
   transform: translateY(calc(var(--border-thin) * -1));
+}
+
+.game-cell:disabled {
+  cursor: default;
 }
 
 .game-cell--revealed {

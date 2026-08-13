@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 
 import { App } from './App'
 import { GameBoard } from './components/GameBoard'
-import { createBoard, toggleFlag } from './logic/board'
+import { createBoard, revealCell, toggleFlag } from './logic/board'
 import type { Level } from './logic/board'
 
 const compactLevel: Level = {
@@ -48,5 +48,17 @@ describe('GameBoard', () => {
     expect(markup).toContain('Flaga, pole 2')
     expect(markup).toContain('>0</strong>')
     expect(markup.match(/class="game-cell/g)).toHaveLength(4)
+  })
+
+  it('disables every cell after the game ends', () => {
+    const lostBoard = revealCell(createBoard({
+      ...compactLevel,
+      mines: [[0, 0], [1, 0], [0, 1], [1, 1]],
+    }), 0)
+    const markup = renderToStaticMarkup(
+      <GameBoard board={lostBoard} onReveal={() => undefined} onFlag={() => undefined} />,
+    )
+
+    expect(markup.match(/disabled=""/g)).toHaveLength(4)
   })
 })

@@ -83,10 +83,10 @@ export function GameCell({
 
   return (
     <button
-      aria-disabled={terminal}
       aria-label={cellLabel(cell, index, gameState)}
       aria-pressed={cell.flagged}
       className={classes}
+      disabled={terminal}
       type="button"
       onClick={() => onReveal(index)}
       onContextMenu={handleContextMenu}
