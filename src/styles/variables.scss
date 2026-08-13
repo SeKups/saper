@@ -1,5 +1,84 @@
+$breakpoint-mobile: 44rem;
+
 :root {
-  --color-page: #e8e3d4;
-  --color-ink: #17201f;
-  --color-accent: #e9bd39;
+  color-scheme: light;
+
+  --color-page: #e9e5d8;
+  --color-panel: #f6f3e9;
+  --color-panel-strong: #fffdf5;
+  --color-ink: #182321;
+  --color-ink-soft: #53615d;
+  --color-line: #a9b0a8;
+  --color-line-strong: #64736e;
+  --color-accent: #e3b72f;
+  --color-accent-deep: #755b0d;
+  --color-field: #263532;
+  --color-field-raised: #40514d;
+  --color-field-hover: #52645f;
+  --color-field-open: #dce1d7;
+  --color-danger: #c64c37;
+  --color-focus: #087a76;
+  --color-number-1: #1769aa;
+  --color-number-2: #2e7d47;
+  --color-number-3: #bf382a;
+  --color-number-4: #5a3d9a;
+  --color-number-5: #8a4119;
+  --color-number-6: #007c83;
+  --color-number-7: #27312f;
+  --color-number-8: #68716e;
+  --color-shadow: rgb(24 35 33 / 18%);
+  --color-grid-line: rgb(24 35 33 / 7%);
+
+  --font-display: "Avenir Next Condensed", "DIN Condensed", "Arial Narrow", sans-serif;
+  --font-body: "Avenir Next", "Segoe UI", sans-serif;
+  --font-mono: "SFMono-Regular", "Cascadia Code", "Liberation Mono", monospace;
+
+  --text-xs: 0.72rem;
+  --text-sm: 0.84rem;
+  --text-md: 1rem;
+  --text-lg: 1.18rem;
+  --text-display: clamp(3.5rem, 13vw, 8.75rem);
+
+  --weight-strong: 700;
+  --weight-display: 800;
+  --line-height-tight: 0.8;
+  --line-height-body: 1.55;
+  --tracking-wide: 0.16em;
+  --tracking-wider: 0.24em;
+
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-page: clamp(1rem, 4vw, 3.5rem);
+
+  --size-full: 100%;
+  --size-page-min: 100vh;
+  --size-content: 72rem;
+  --size-copy: 31rem;
+  --size-cell: clamp(2.1rem, 6vw, 3.15rem);
+  --size-control-min: 11rem;
+  --size-icon: 1.25rem;
+  --size-grid-pattern: 2rem;
+  --size-outline-offset: 0.18rem;
+
+  --border-thin: 0.0625rem;
+  --border-medium: 0.125rem;
+  --radius-small: 0.2rem;
+  --radius-control: 0.35rem;
+  --radius-panel: 0.5rem;
+
+  --shadow-panel: 0.75rem 0.75rem 0 var(--color-shadow);
+  --shadow-cell: inset 0.12rem 0.12rem 0 rgb(255 255 255 / 13%),
+    inset -0.12rem -0.12rem 0 rgb(0 0 0 / 24%);
+  --shadow-cell-pressed: inset 0.12rem 0.12rem 0 rgb(0 0 0 / 12%);
+  --background-page: linear-gradient(var(--color-grid-line) var(--border-thin), transparent var(--border-thin)),
+    linear-gradient(90deg, var(--color-grid-line) var(--border-thin), transparent var(--border-thin)),
+    var(--color-page);
+
+  --duration-fast: 120ms;
 }
