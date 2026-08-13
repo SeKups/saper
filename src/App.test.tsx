@@ -30,9 +30,13 @@ describe('App', () => {
     const markup = renderToStaticMarkup(<App />)
 
     expect(markup).toContain('aria-label="Wybierz poziom"')
+    expect(markup).toContain('class="level-select__field"')
+    expect(markup).toContain('aria-pressed="false" class="flag-mode-button"')
+    expect(markup).toContain('Tryb flag')
     expect(markup).toContain('Uruchom planszę ponownie')
     expect(markup).toContain('aria-live="polite"')
     expect(markup).toContain('Wybierz pole, aby rozpocząć')
+    expect(markup).toContain('Najedź na pole i naciśnij')
     expect(markup).not.toContain('Pierwszy ruch jest bezpieczny')
   })
 })
@@ -41,7 +45,7 @@ describe('GameBoard', () => {
   it('uses effective mines and flags for the counter', () => {
     const board = toggleFlag(createBoard(compactLevel), 1)
     const markup = renderToStaticMarkup(
-      <GameBoard board={board} onReveal={() => undefined} onFlag={() => undefined} />,
+      <GameBoard board={board} onActivate={() => undefined} onFlag={() => undefined} />,
     )
 
     expect(markup).toContain('role="group"')
@@ -57,7 +61,7 @@ describe('GameBoard', () => {
       mines: [[0, 0], [1, 0], [0, 1], [1, 1]],
     }), 0)
     const markup = renderToStaticMarkup(
-      <GameBoard board={lostBoard} onReveal={() => undefined} onFlag={() => undefined} />,
+      <GameBoard board={lostBoard} onActivate={() => undefined} onFlag={() => undefined} />,
     )
 
     expect(markup.match(/disabled=""/g)).toHaveLength(4)

@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import type { CSSProperties } from 'react'
 
 import type { Board } from '../logic/board'
@@ -5,8 +6,8 @@ import { GameCell } from './GameCell'
 
 type GameBoardProps = {
   board: Board
+  onActivate: (index: number) => void
   onFlag: (index: number) => void
-  onReveal: (index: number) => void
 }
 
 type BoardStyle = CSSProperties & {
@@ -32,7 +33,45 @@ const statusContent: Record<Board['state'], { label: string; message: string }> 
   },
 }
 
-export function GameBoard({ board, onFlag, onReveal }: GameBoardProps) {
+export function GameBoard({ board, onActivate, onFlag }: GameBoardProps) {
+  const hoveredCell = useRef<number | null>(null)
+  const flagHandler = useRef(onFlag)
+
+  // Keep the window listener stable while React supplies the latest callback.
+  flagHandler.current = onFlag
+
+  useEffect(() => {
+    const flagHoveredCell = (event: KeyboardEvent) => {
+      const index = hoveredCell.current
+      const modified = event.altKey || event.ctrlKey || event.metaKey
+
+      if (
+        index === null
+        || event.repeat
+        || modified
+        || event.key.toLowerCase() !== 'f'
+      ) {
+        return
+      }
+
+      event.preventDefault()
+      flagHandler.current(index)
+    }
+
+    window.addEventListener('keydown', flagHoveredCell)
+    return () => window.removeEventListener('keydown', flagHoveredCell)
+  }, [])
+
+  const setHoveredCell = (index: number) => {
+    hoveredCell.current = index
+  }
+
+  const clearHoveredCell = (index: number) => {
+    if (hoveredCell.current === index) {
+      hoveredCell.current = null
+    }
+  }
+
   const mineCount = board.cells.filter((cell) => cell.mine).length
   const flagCount = board.cells.filter((cell) => cell.flagged).length
   const remainingMines = mineCount - flagCount
@@ -78,8 +117,10 @@ export function GameBoard({ board, onFlag, onReveal }: GameBoardProps) {
                     gameState={board.state}
                     index={index}
                     key={index}
+                    onActivate={onActivate}
                     onFlag={onFlag}
-                    onReveal={onReveal}
+                    onPointerEnter={setHoveredCell}
+                    onPointerLeave={clearHoveredCell}
                   />
                 )
               })}

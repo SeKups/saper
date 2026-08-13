@@ -1,4 +1,4 @@
-import type { KeyboardEvent, MouseEvent } from 'react'
+import type { MouseEvent } from 'react'
 
 import type { Board, Cell } from '../logic/board'
 
@@ -6,8 +6,10 @@ type GameCellProps = {
   cell: Cell
   gameState: Board['state']
   index: number
+  onActivate: (index: number) => void
   onFlag: (index: number) => void
-  onReveal: (index: number) => void
+  onPointerEnter: (index: number) => void
+  onPointerLeave: (index: number) => void
 }
 
 function cellLabel(cell: Cell, index: number, gameState: Board['state']): string {
@@ -52,8 +54,10 @@ export function GameCell({
   cell,
   gameState,
   index,
+  onActivate,
   onFlag,
-  onReveal,
+  onPointerEnter,
+  onPointerLeave,
 }: GameCellProps) {
   const mineVisible = cell.mine && (cell.revealed || gameState === 'lost')
   const terminal = gameState === 'won' || gameState === 'lost'
@@ -74,13 +78,6 @@ export function GameCell({
     onFlag(index)
   }
 
-  const handleKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
-    if (event.key.toLowerCase() === 'f') {
-      event.preventDefault()
-      onFlag(index)
-    }
-  }
-
   return (
     <button
       aria-label={cellLabel(cell, index, gameState)}
@@ -88,9 +85,10 @@ export function GameCell({
       className={classes}
       disabled={terminal}
       type="button"
-      onClick={() => onReveal(index)}
+      onClick={() => onActivate(index)}
       onContextMenu={handleContextMenu}
-      onKeyDown={handleKeyDown}
+      onPointerEnter={() => onPointerEnter(index)}
+      onPointerLeave={() => onPointerLeave(index)}
     >
       <span aria-hidden="true">{cellContent(cell, gameState)}</span>
     </button>

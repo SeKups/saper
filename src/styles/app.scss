@@ -108,9 +108,28 @@ select:focus-visible {
   gap: var(--space-1);
 }
 
+.level-select__field {
+  position: relative;
+  display: grid;
+}
+
+.level-select__field::after {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-end: var(--space-3);
+  inline-size: var(--space-2);
+  block-size: var(--space-2);
+  border-inline-end: var(--border-thin) solid var(--color-ink-soft);
+  border-block-end: var(--border-thin) solid var(--color-ink-soft);
+  content: '';
+  pointer-events: none;
+  transform: translateY(-70%) rotate(45deg);
+}
+
 .level-select__control,
+.flag-mode-button,
 .restart-button {
-  min-block-size: calc(var(--space-7) + var(--space-1));
+  min-block-size: var(--size-control-height);
   border: var(--border-thin) solid var(--color-line-strong);
   border-radius: var(--radius-control);
   background: var(--color-panel-strong);
@@ -119,30 +138,51 @@ select:focus-visible {
 }
 
 .level-select__control {
+  appearance: none;
   inline-size: var(--size-full);
   min-inline-size: var(--size-control-min);
+  padding-inline-end: var(--space-6);
   cursor: pointer;
 }
 
+.flag-mode-button,
 .restart-button {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: var(--space-2);
   inline-size: var(--size-full);
   cursor: pointer;
   transition: background var(--duration-fast) ease, border-color var(--duration-fast) ease;
 }
 
+.restart-button {
+  justify-content: center;
+}
+
+.level-select__control:hover,
+.flag-mode-button:hover,
 .restart-button:hover {
   border-color: var(--color-accent-deep);
   background: var(--color-line);
 }
 
+.flag-mode-button[aria-pressed='true'] {
+  border-color: var(--color-accent-deep);
+  background: var(--color-flag-surface);
+}
+
+.flag-mode-button__icon,
 .restart-button__icon {
   color: var(--color-accent);
   font-family: var(--font-mono);
   font-size: var(--size-icon);
+}
+
+.flag-mode-button__state {
+  margin-inline-start: auto;
+  color: var(--color-ink-soft);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
 }
 
 .game-board {
@@ -233,7 +273,7 @@ select:focus-visible {
     transform var(--duration-fast) ease;
 }
 
-.game-cell:hover:not(.game-cell--revealed):not(:disabled) {
+.game-cell:hover:not(.game-cell--revealed):not(.game-cell--flagged):not(:disabled) {
   background: var(--color-field-hover);
   transform: translateY(calc(var(--border-thin) * -1));
 }
@@ -250,6 +290,7 @@ select:focus-visible {
 }
 
 .game-cell--flagged {
+  background: var(--color-flag-surface);
   color: var(--color-accent);
 }
 
