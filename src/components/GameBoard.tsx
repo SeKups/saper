@@ -16,7 +16,7 @@ type BoardStyle = CSSProperties & {
 const statusContent: Record<Board['state'], { label: string; message: string }> = {
   idle: {
     label: 'Gotowy',
-    message: 'Pierwszy ruch jest bezpieczny',
+    message: 'Wybierz pole, aby rozpocząć',
   },
   playing: {
     label: 'Rozbrajanie',

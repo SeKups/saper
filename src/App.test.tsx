@@ -32,7 +32,8 @@ describe('App', () => {
     expect(markup).toContain('aria-label="Wybierz poziom"')
     expect(markup).toContain('Uruchom planszę ponownie')
     expect(markup).toContain('aria-live="polite"')
-    expect(markup).toContain('Pierwszy ruch jest bezpieczny')
+    expect(markup).toContain('Wybierz pole, aby rozpocząć')
+    expect(markup).not.toContain('Pierwszy ruch jest bezpieczny')
   })
 })
 
@@ -60,5 +61,6 @@ describe('GameBoard', () => {
     )
 
     expect(markup.match(/disabled=""/g)).toHaveLength(4)
+    expect(markup).toContain('Spróbuj ponownie na tej samej planszy')
   })
 })
