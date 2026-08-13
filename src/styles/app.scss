@@ -77,14 +77,6 @@ select:focus-visible {
   line-height: var(--line-height-tight);
 }
 
-.app__intro {
-  max-inline-size: var(--size-copy);
-  margin: var(--space-0);
-  color: var(--color-ink-soft);
-  font-size: var(--text-sm);
-  line-height: var(--line-height-body);
-}
-
 .control-panel {
   display: flex;
   flex-wrap: wrap;
@@ -327,9 +319,11 @@ select:focus-visible {
 .app__instructions p {
   flex: 1 1 var(--size-control-min);
   margin: var(--space-0);
+  line-height: var(--line-height-body);
 }
 
 .app__instructions kbd {
+  display: inline-block;
   border: var(--border-thin) solid var(--color-line-strong);
   border-radius: var(--radius-small);
   background: var(--color-panel-strong);
@@ -337,4 +331,6 @@ select:focus-visible {
   color: var(--color-ink);
   font-family: inherit;
   font-weight: var(--weight-strong);
+  line-height: 1;
+  vertical-align: middle;
 }

@@ -57,9 +57,6 @@ export function App() {
           <p className="app__eyebrow">Pole kontrolne / 01</p>
           <h1 className="app__title">Saper</h1>
         </div>
-        <p className="app__intro">
-          Oczyść planszę. Każdy ruch pozostaje przewidywalny — nawet ten pierwszy.
-        </p>
       </header>
 
       <section className="control-panel" aria-label="Ustawienia gry">
