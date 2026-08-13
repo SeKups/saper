@@ -1,0 +1,25 @@
+{
+  "name": "saper",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "test": "vitest run",
+    "typecheck": "tsc -b --pretty false",
+    "build": "tsc -b && vite build"
+  },
+  "dependencies": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.18",
+    "@types/react-dom": "18.3.5",
+    "@vitejs/plugin-react": "4.3.4",
+    "sass": "1.83.4",
+    "typescript": "5.7.2",
+    "vite": "6.4.3",
+    "vitest": "3.2.6"
+  }
+}
