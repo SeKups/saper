@@ -69,5 +69,3 @@ Użyłem tego głównie do szukania edge case'ów, niejasnych miejsc w specyfika
 Mastra nie jest częścią projektu ani jego zależnością. Potraktowałem ją po prostu jako dodatkowe narzędzie podczas analizy.
 
 Podobny mechanizm testuję też w swoim prywatnym projekcie i podoba mi się samo podejście, w którym modele nie tylko dają odpowiedź, ale też wzajemnie próbują ją podważyć. Uznałem więc, że to zadanie będzie całkiem dobrym miejscem, żeby sprawdzić taki workflow w praktyce.
-
-<img width="1030" height="901" alt="Zrzut ekranu 2026-08-14 o 02 55 25" src="https://github.com/user-attachments/assets/662fb2d4-8341-43c0-a282-74fddfc6fe79" />
